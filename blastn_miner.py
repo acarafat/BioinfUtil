@@ -1,10 +1,16 @@
-##!/usr/bin/env python2
-## -*- coding: utf-8 -*-
-#"""
-#Created on Mon Mar  4 13:34:29 2019
-#
-#@author: arafat
-#"""
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar  4 13:34:29 2019
+@author: arafat
+
+This code use standalone BLAST with following customized output: -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand"
+
+eg: The following command was used in UNIX to generate BLAST report
+blastn -task blastn -query query.fas -subject ~/competition_experiment/13_genome.fasta -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand" -qcov_hsp_perc 80 > nodZ_13strain.blast.txt
+
+Using the BLAST report and hit-indices, this code can extract hits from original fasta files by handling both +/- strand information.
+"""
 
 
 
