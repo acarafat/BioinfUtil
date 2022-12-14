@@ -3,6 +3,7 @@ Gene Present-Absent Matrix
 
 Let's say you have a set of fasta files where each file contains specific gene sequence from different isolates. 
 This script can make your life easier to make a gene present-absent matrix.
+It will make a csv file containing the gene present-absent matrix.
 """
 
 from sys import argv
@@ -42,3 +43,4 @@ if __name__ == '__main__':
         gene_pa[gene] = enlist_isolates(gene)
     
     siMat = pd.DataFrame.from_dict(gene_pa)
+    siMat.to_csv('pa_mat.csv', sep=',')
