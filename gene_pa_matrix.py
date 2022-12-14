@@ -1,4 +1,4 @@
-"""
+'''
 Gene Present-Absent Matrix
 
 Let's say you have a set of fasta files where each file contains specific gene sequence from different isolates. 
@@ -6,7 +6,7 @@ This script can make your life easier to make a gene present-absent matrix.
 It will make a csv file containing the gene present-absent matrix.
 
 Usage in command line: python gene_pa_matrix.py ~/dir/contianing/fasta fasta_suffix
-"""
+'''
 
 from sys import argv
 from Bio import SeqIO
