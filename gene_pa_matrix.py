@@ -21,9 +21,11 @@ def enlist_fasta(dir_fasta, suffix):
     OUTPUT: List containing name of the gene fasta files in that directory.
     '''
     gene_list = []
-    for filename in listdir(getcwd()):
+    if not dir_fasta.endswith('/'):
+        dir_fasta = dir_fasta + '/'
+    for filename in listdir(dir_fasta):
         if filename.endswith(suffix):
-            gene_list.append(filename)
+            gene_list.append(dir_fasta+filename)
     return gene_list
 
 def enlist_entry(gene_fasta):
@@ -40,9 +42,8 @@ def enlist_entry(gene_fasta):
 if __name__ == '__main__':       
     gene_list = enlist_fasta(argv[1], argv[2])
     gene_pa = {}
-    
     for gene in gene_list:
-        gene_pa[gene] = enlist_isolates(gene)
+        gene_pa[gene] = enlist_entry(gene)
     
     siMat = pd.DataFrame.from_dict(gene_pa)
     siMat.to_csv('pa_mat.csv', sep=',')
