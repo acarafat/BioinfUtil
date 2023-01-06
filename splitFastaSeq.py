@@ -11,7 +11,7 @@ def splitFastaSeq(inputFile, outputDir, prefix=''):
     if not outputDir.endswith('/'):
         outputDir = outputDir + '/'
     for seq_record in SeqIO.parse(inputFile, 'fasta'):
-        SeqIO.write(seq_record, outputDir+prefix+str(seq_record.id)+.fasta, 'fasta')
+        SeqIO.write(seq_record, outputDir+prefix+str(seq_record.id)+'.fasta', 'fasta')
 
     pass
 
