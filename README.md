@@ -15,6 +15,20 @@ b: also count gene length for that genome in the presence-absence matrix
 
 Usage in command line: `python gene_pa_matrix.py <option> <~/dir/contianing/fasta> <fasta_suffix>`
 
+## Update fasta description `update_fasta_desc.py`
+
+What it does:
+- Use provided pattern to split fasta description
+- Keep the expected substring from provided position
+- Only keep longest sequence if there are multiple entry for same seqID
+
+Usage:
+`python update_fasta_desc.py <~/path/to/input/fasta> <fasta_suffix> <split_symbol> <position_to_keep> <updated_fasta_suffix>`
+
+For example, let's say a fasta description is the following:
+>05LoS16R10_36_00608__05LoS16R10_36
+Here the split symbol will be '__' and position to keep will be 1 (count started from 0)
+
 ## Get Fasta Stat `get_fasta_stat.py`
 For a set of fasta files in a directory, retrieve number of nucleotide per fasta file.
 This is helpful to get estimate of genome size.
