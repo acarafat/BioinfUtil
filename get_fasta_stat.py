@@ -21,7 +21,7 @@ def genome_size(fasta_dir, fasta_suffix):
   for fasta_file in listdir(fasta_dir):
     if fasta_file.endswith(fasta_suffix):
       for seq_record in SeqIO.parse(fasta_file, 'fasta'):
-        fasta_size[seq_record.id] += len(str(seq_record.seq))
+        fasta_size[fasta_file] += len(str(seq_record.seq))
     
   with open('fasta_stat.csv', 'w') as f:
     for key in fasta_size.keys():
