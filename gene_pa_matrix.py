@@ -62,7 +62,7 @@ if __name__ == '__main__':
     if argv[1] == 'a':
         for gene in gene_list:
             gene_pa[gene] = enlist_entry(gene)
-    elif argv[1] == 'a':
+    elif argv[1] == 'b':
         for gene in gene_list:
             gene_pa[gene] = enlist_entry_size(gene)
     
