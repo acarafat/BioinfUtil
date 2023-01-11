@@ -27,9 +27,12 @@ def update_fasta_id(fasta_file, split_symbol, position_to_keep):
         seq_list = {}
         for seq_record in SeqIO.parse(fasta_file, 'fasta'):
                 seq_id = seq_record.id
+                # Update the fasta description
                 if split_symbol in seq_id:
-                        seq_record.id = seq_id.split(split_symbol)[position_to_keep]
-
+                        seq_record.id = seq_id.split(split_symbol)[int(position_to_keep)]
+                        seq_record.description = ''
+                        
+                # Update the dictionary        
                 if seq_record.id not in seq_list.keys():
                         seq_list[seq_record.id] = seq_record
                 else:
