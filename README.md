@@ -3,13 +3,17 @@ Regularly used bioinformatics script for different purposes:
 - Make gene present-absent matrix
 - Split Fasta
 
-## gene_pa_matrix.py
-
+## Gene Present-Absent Matrix `gene_pa_matrix.py`
 Let's say you have a set of fasta files where each file contains specific gene sequence from different isolates. 
-This script can make your life easier to make a gene present-absent matrix.
+This script can make your life easier to make a gene present-absent matrix. 
+It can also count length of the genes in #nucleotide
+It will make a csv file containing the gene present-absent matrix.
 
-### Command line usages:
-`python3 ~/path/to/fasta/files fasta`
+Options: 
+a: just the presence-absence matrix
+b: also count gene length for that genome in the presence-absence matrix
+
+Usage in command line: `python gene_pa_matrix.py <option> <~/dir/contianing/fasta> <fasta_suffix>`
 
 ## blastn_miner.py
 Used to mine blast output
