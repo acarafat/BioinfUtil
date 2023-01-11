@@ -1,12 +1,12 @@
 '''
 What it does:
 - Use provided pattern to split fasta description
-- Remove contig number from seqID
+- Keep the expected substring from provided position
 - Only keep longest sequence if there are multiple entry for same seqID
 
 
 How to use this script in command line:
-python update_fasta_desc.py <fasta_file_input> <split_symbol> <position_to_keep> <fasta_file_output>
+python update_fasta_desc.py <~/path/to/input/fasta> <fasta_suffix> <split_symbol> <position_to_keep> <updated_fasta_suffix>
 
 For example, let's say a fasta description is the following:
 
@@ -17,7 +17,22 @@ Here the split symbol will be '__' and position to keep will be 1 (count started
 
 from Bio import SeqIO
 from sys import argv
+from os import listdir
 
+
+def enlist_fasta(dir_fasta, suffix):
+    '''
+    dir_fasta: A directory path that contains multiple fasta files. Each fasta should contains isolates for a specific genes.
+    SUFFIX: Extension of the set of fasta file.
+    OUTPUT: List containing name of the fasta files in that directory.
+    '''
+    gene_list = []
+    if not dir_fasta.endswith('/'):
+        dir_fasta = dir_fasta + '/'
+    for filename in listdir(dir_fasta):
+        if filename.endswith(suffix):
+            gene_list.append(dir_fasta+filename)
+    return gene_list
 
 def update_fasta_id(fasta_file, split_symbol, position_to_keep):
         '''
@@ -42,5 +57,7 @@ def update_fasta_id(fasta_file, split_symbol, position_to_keep):
 
 
 if __name__ == "__main__":
-        updated_seq_list = update_fasta_id(argv[1], argv[2], argv[3])
-        SeqIO.write(updated_seq_list.values(), argv[4], 'fasta')
+        fasta_list = enlist_fasta(argv[1], argv[2])
+        for fasta_file in fasta_list:
+                updated_seq_list = update_fasta_id(fasta_file, argv[3], argv[4])
+                SeqIO.write(updated_seq_list.values(), fasta_file+argv[5], 'fasta')
