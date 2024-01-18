@@ -1,7 +1,9 @@
 # BioinfUtil
 Regularly used bioinformatics script for different purposes:
 - Make gene present-absent matrix
-- Split Fasta
+- Split Fasta file
+- GenBank to Fasta conversion
+- Update Fasta file description
 
 ## gbk2fasta
 A varsatile script to convert a GenBank file to fasta. Extract whole contigs, only CDS nucleotide sequences, or translated CDS sequences. This is a Python script to be used in command line/shell/terminal. 
