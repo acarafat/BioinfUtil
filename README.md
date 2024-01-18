@@ -21,7 +21,7 @@ There are three options: `fna`, `ffn`, and `faa`.
 - `fna` extracts all GenBank sequence records.
 - `ffn` extracts only CDS records.
 - `faa` extracts CDS and translate it into amino acid sequences.
-- 
+  
 ### Output
 `input.gbk.fasta` file will be created in the same directory of this script file.
 
