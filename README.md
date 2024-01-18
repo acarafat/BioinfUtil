@@ -3,6 +3,26 @@ Regularly used bioinformatics script for different purposes:
 - Make gene present-absent matrix
 - Split Fasta
 
+## gbk2fasta
+A varsatile script to convert a GenBank file to fasta. Extract whole contigs, only CDS nucleotide sequences, or translated CDS sequences. This is a Python script to be used in command line/shell/terminal. 
+
+### Requirement
+It requires BioPython. 
+
+### Usage
+Use the following prompt to convert .gbk file to .fasta:
+`python gbk2fasta.py input.gbk fasta_option`
+
+
+### Conversion options
+There are three options: `fna`, `ffn`, and `faa`.
+- `fna` extracts all GenBank sequence records.
+- `ffn` extracts only CDS records.
+- `faa` extracts CDS and translate it into amino acid sequences.
+- 
+### Output
+`input.gbk.fasta` file will be created in the same directory of this script file.
+
 ## Gene Present-Absent Matrix `gene_pa_matrix.py`
 Let's say you have a set of fasta files where each file contains specific gene sequence from different isolates. 
 This script can make your life easier to make a gene present-absent matrix. 
