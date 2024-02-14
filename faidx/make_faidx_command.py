@@ -3,6 +3,9 @@ Given a coordinate file, this will genarate samtools faidx command to extract ta
 
 python3 make_faidx_command.py coordinate.txt genomes.fasta
 
+This will genarate a faidx_command.sh, which you can run from commandline:
+$ chmod +x faidx_command.sh
+$ ./faidx_command.sh
 
 coordinate.txt is a tab seperated file and look like this:
 strain1  58700  59980
