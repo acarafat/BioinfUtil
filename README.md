@@ -66,4 +66,25 @@ This is a command line file. That means you have to use it in the terminal.
 
 Use of prefix for the splitted fasta file is optional.
 
+
 Usage: `python splitFastaSeq.py inputFasta.fasta ~/output/directory/ prefix`
+
+## gbk_reverse_complement.py
+The provided Python script is designed to reverse complement a GenBank file, including its DNA sequence and gene features. The script utilizes the Biopython library for bioinformatics tasks. This manual will guide you through the usage of the script and provide step-by-step instructions.
+
+Ensure you have a GenBank file (with a .gb or .gbk extension) that you want to reverse complement.
+
+```python reverse_complement_genbank.py --input input.gb --output output_reversed.gb```
+
+Replace input.gb with the path to your input GenBank file and output_reversed.gb with the desired output file name.
+
+Script Options The script accepts the following command-line arguments:
+- --input or -i: Path to the input GenBank file (required).
+- --output or -o: Path to the output GenBank file (required).
+
+Ensure that you provide both input and output file paths when running the script.
+
+
+
+
+
