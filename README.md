@@ -8,21 +8,17 @@ Regularly used bioinformatics script for different purposes:
 ## gbk2fasta
 A varsatile script to convert a GenBank file to fasta. Extract whole contigs, only CDS nucleotide sequences, or translated CDS sequences. This is a Python script to be used in command line/shell/terminal. 
 
-### Requirement
-It requires BioPython. 
+Requirement: It requires BioPython. 
 
-### Usage
 Use the following prompt to convert .gbk file to .fasta:
 `python gbk2fasta.py input.gbk fasta_option`
 
-
-### Conversion options
+Conversion options
 There are three options: `fna`, `ffn`, and `faa`.
 - `fna` extracts all GenBank sequence records.
 - `ffn` extracts only CDS records.
 - `faa` extracts CDS and translate it into amino acid sequences.
   
-### Output
 `input.gbk.fasta` file will be created in the same directory of this script file.
 
 ## Gene Present-Absent Matrix `gene_pa_matrix.py`
@@ -83,6 +79,25 @@ Script Options The script accepts the following command-line arguments:
 - --output or -o: Path to the output GenBank file (required).
 
 Ensure that you provide both input and output file paths when running the script.
+
+## multi_fasta_concatenator.py
+
+Usage: `python multi_fasta_concatanator.py input_directory output_file.fasta`
+
+Description:
+Concatenate sequences from multiple FASTA files by strain. The script takes an input directory containing FASTA files, where each file represents an individual strain with multiple genes extracted from the strain's genome. It concatenates the gene sequences for each strain, filling gaps for missing genes, and writes the concatenated sequences into a single FASTA file.
+
+Arguments:
+  input_directory    Path to the input directory containing FASTA files.
+  output_file.fasta  Path to the output FASTA file where concatenated sequences will be written.
+
+Example:
+  python script_name.py input_directory output_file.fasta
+
+Note:
+  - The input directory should contain FASTA files, each representing an individual strain.
+  - The output file will contain concatenated sequences for each strain, where gene order is maintained across all strains.
+  - If a strain does not have a particular gene, gaps will be used to maintain alignment.
 
 
 
