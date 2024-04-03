@@ -1,13 +1,9 @@
 '''
-Functions to filter files containing sequences
-
-Update:
-01/05/23 - New function added to only check duplicated entry and filter
-12/16/22 - Filtering fasta funciton updated to check for duplicated entry
-12/15/22 - Filtering fasta funciton updated, bug fixed. 
 '''
 
 from Bio import SeqIO
+import argparse
+
 
 def byList(seqID_list, fasta_target):
     
@@ -42,3 +38,37 @@ def bySize(fasta_target, new_fasta):
     SeqIO.write(unique_seqs.values(), new_fasta, 'fasta')
     pass
             
+
+def filter_fasta_by_id(fasta_file, id_file, output_file):
+  """Filters a FASTA file by sequence IDs in another file using Biopython.
+
+  Args:
+    fasta_file: Path to the FASTA file.
+    id_file: Path to the text file containing IDs (one per line).
+    output_file: Path to the output FASTA file.
+  """
+
+  with open(id_file, 'r') as ids:
+    desired_ids = set(line.strip() for line in ids)
+
+  # Use Biopython's SeqIO to iterate through FASTA records
+  with open(fasta_file, 'r') as fasta, open(output_file, 'w') as out:
+    for record in SeqIO.parse(fasta, 'fasta'):
+      if record.id in desired_ids:
+        SeqIO.write(record, out, 'fasta')
+
+
+if __name__ == '__main__':
+  # Define argument parser (same as before)
+  parser = argparse.ArgumentParser(description='Filter FASTA file by sequence IDs')
+  parser.add_argument('-f', '--fasta', required=True, help='Path to the FASTA file')
+  parser.add_argument('-i', '--ids', required=True, help='Path to the file containing IDs')
+  parser.add_argument('-o', '--output', required=True, help='Path to the output FASTA file')
+
+  # Parse arguments (same as before)
+  args = parser.parse_args()
+
+  # Call the filtering function
+  filter_fasta_by_id(args.fasta, args.ids, args.output)
+
+  print(f"Filtered FASTA written to: {args.output}")
