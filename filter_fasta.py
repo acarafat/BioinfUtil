@@ -6,9 +6,9 @@ import argparse
 
 
 def byList(seqID_list, fasta_target):
-    
+
     '''
-    INPUT: 
+    INPUT:
       seqID: list of sequence ID or fasta identifier
       fasta_target: Fasta file containing sequences which need to be filtered
     OUTPUT: Fasta file containing sequences of those ID
@@ -60,15 +60,21 @@ def filter_fasta_by_id(fasta_file, id_file, output_file):
 
 if __name__ == '__main__':
   # Define argument parser (same as before)
-  parser = argparse.ArgumentParser(description='Filter FASTA file by sequence IDs')
-  parser.add_argument('-f', '--fasta', required=True, help='Path to the FASTA file')
-  parser.add_argument('-i', '--ids', required=True, help='Path to the file containing IDs')
-  parser.add_argument('-o', '--output', required=True, help='Path to the output FASTA file')
+  parser = argparse.ArgumentParser(description='Filter FASTA file by sequence IDs, size, or list')
+  parser.add_argument('-f', '--fasta', required = True, help='Path to the FASTA file')
+  parser.add_argument('-i', '--ids', required = False, help='Path to the file containing IDs')
+  parser.add_argument('-o', '--output', required = True, help='Path to the output FASTA file')
+  parser.add_argument('-n', '--option', required = True, help='Type of filter: 1 for by id in list, 2 for by size, 3 for id in another file')
 
   # Parse arguments (same as before)
   args = parser.parse_args()
 
   # Call the filtering function
-  filter_fasta_by_id(args.fasta, args.ids, args.output)
+  if args.option == '3':
+    filter_fasta_by_id(args.fasta, args.ids, args.output)
+  elif args.option == '2':
+    bySize(args.fasta, args.output)
+  else:
+    pass
 
   print(f"Filtered FASTA written to: {args.output}")
