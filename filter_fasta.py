@@ -64,7 +64,8 @@ if __name__ == '__main__':
   parser.add_argument('-f', '--fasta', required = True, help='Path to the FASTA file')
   parser.add_argument('-i', '--ids', required = False, help='Path to the file containing IDs')
   parser.add_argument('-o', '--output', required = True, help='Path to the output FASTA file')
-  parser.add_argument('-n', '--option', required = True, help='Type of filter: 1 for by id in list, 2 for by size, 3 for id in another file')
+  parser.add_argument('-n', '--option', required = True, help='Type of filter: 1 for by id in list, 2 for by size, 3 $
+  parser.add_argument('-l', '--list', required =  False, help='List of contig id\'s to be filtered')
 
   # Parse arguments (same as before)
   args = parser.parse_args()
@@ -75,6 +76,7 @@ if __name__ == '__main__':
   elif args.option == '2':
     bySize(args.fasta, args.output)
   else:
-    pass
+    byList(args.list, args.fasta, args.output)
 
   print(f"Filtered FASTA written to: {args.output}")
+
