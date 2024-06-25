@@ -1,23 +1,34 @@
-# Split a set of sequences in a fasta file into individual fasta files
-
 from Bio import SeqIO
-import sys
+import argparse
 
-def splitFastaSeq(inputFile, outputDir, prefix=''):
-    """
-    Input: A fasta file containing set of sequences
-    Output: Set of fasta files containing individual sequences in the outputDir with `prefix`
-    """
-    if not outputDir.endswith('/'):
-        outputDir = outputDir + '/'
-    for seq_record in SeqIO.parse(inputFile, 'fasta'):
-        SeqIO.write(seq_record, outputDir+prefix+str(seq_record.id)+'.fasta', 'fasta')
 
-    pass
+def split_fasta_seq(input_file, output_dir, prefix=""):
+  """
+  Splits a set of sequences in a FASTA file into individual FASTA files.
+
+  Args:
+    input_file: Path to the input FASTA file.
+    output_dir: Path to the output directory.
+    prefix: Optional prefix to add to the output filenames (default: "").
+  """
+  if not output_dir.endswith("/"):
+    output_dir += "/"
+
+  for seq_record in SeqIO.parse(input_file, "fasta"):
+    output_file = f"{output_dir}{prefix}{seq_record.id}.fasta"
+    SeqIO.write(seq_record, output_file, "fasta")
+
 
 if __name__ == "__main__":
-    inputFile = sys.argv[1]
-    outputDir = sys.argv[2]
-    prefix = sys.argv[3]
-    splitFastaSeq(inputFile, outputDir, prefix)
-    print('Done.')
+  # Define arguments
+  parser = argparse.ArgumentParser(description="Split FASTA file into individual files")
+  parser.add_argument("-i", "--input",  help="Path to the input FASTA file", required=True)
+  parser.add_argument("-o", "--output", help="Path to the output directory", required=True)
+  parser.add_argument("-p", "--prefix", help="Optional prefix for output filenames", required=False, default="")
+
+  args = parser.parse_args()
+
+  # Split FASTA file
+  split_fasta_seq(args.input, args.output, args.prefix)
+
+  print("Done. Individual FASTA files created in the output directory.")
