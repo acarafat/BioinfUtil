@@ -58,7 +58,7 @@ def filter_fasta_by_id(fasta_file, id_file, output_file):
         SeqIO.write(record, out, 'fasta')
 
 
-if __name__ == '__main__':
+def main():
   # Define argument parser (same as before)
   parser = argparse.ArgumentParser(description='Filter FASTA file by sequence IDs, size, or list')
   parser.add_argument('-f', '--fasta', required = True, help='Path to the FASTA file')
@@ -80,3 +80,5 @@ if __name__ == '__main__':
 
   print(f"Filtered FASTA written to: {args.output}")
 
+if __name__ == '__main__':
+  main()

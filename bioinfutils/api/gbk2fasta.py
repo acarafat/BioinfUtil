@@ -98,7 +98,8 @@ def process_input(input_path, output_type, output_dir):
         raise ValueError("Invalid input path. Must be a file or directory.")
 
 
-if __name__ == "__main__":
+
+def main():
     parser = argparse.ArgumentParser(description='Convert GenBank files to fasta format (fna, ffn, faa).')
     parser.add_argument('--input', '-i',  help='Input GenBank file or directory containing GenBank files.')
     parser.add_argument('--output_type', '-t', choices=['fna', 'ffn', 'faa'], help='Output type: fna (whole contigs),
@@ -112,3 +113,7 @@ if __name__ == "__main__":
         os.makedirs(args.output_dir)
 
     process_input(args.input, args.output_type, args.output_dir)
+
+
+if __name__ == "__main__":
+    main()

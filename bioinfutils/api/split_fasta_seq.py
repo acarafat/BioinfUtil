@@ -19,7 +19,7 @@ def split_fasta_seq(input_file, output_dir, prefix=""):
     SeqIO.write(seq_record, output_file, "fasta")
 
 
-if __name__ == "__main__":
+def main():
   # Define arguments
   parser = argparse.ArgumentParser(description="Split FASTA file into individual files")
   parser.add_argument("-i", "--input",  help="Path to the input FASTA file", required=True)
@@ -32,3 +32,6 @@ if __name__ == "__main__":
   split_fasta_seq(args.input, args.output, args.prefix)
 
   print("Done. Individual FASTA files created in the output directory.")
+
+if __name__ == "__main__":
+  main()

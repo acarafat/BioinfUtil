@@ -21,8 +21,7 @@ def update_fasta_ids(input_file, output_file):
       all_seq_record.append(record)
     SeqIO.write(all_seq_record, output, "fasta")
 
-
-if __name__ == "__main__":
+def main()
   # Define arguments
   parser = argparse.ArgumentParser(description="Update FASTA sequence IDs")
   parser.add_argument( "-i", "--input", help="Path to the input FASTA file")
@@ -33,3 +32,6 @@ if __name__ == "__main__":
   update_fasta_ids(args.input, args.output)
 
   print(f"FASTA sequence IDs updated in: {args.output}")
+
+if __name__ == "__main__":
+  main()

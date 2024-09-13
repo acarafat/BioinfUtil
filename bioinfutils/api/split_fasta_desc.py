@@ -40,7 +40,7 @@ def update_fasta_id(fasta_file, split_symbol, position_to_remove):
     return seq_list
 
 
-if __name__ == "__main__":
+def main():
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Update FASTA descriptions based on split patterns.")
 
@@ -68,3 +68,7 @@ if __name__ == "__main__":
         SeqIO.write(updated_seq_list.values(), output_file, 'fasta')
 
     print(f"FASTA files updated and saved with suffix '{args.updated_fasta_suffix}'")
+
+
+if __name__ == "__main__":
+    main()

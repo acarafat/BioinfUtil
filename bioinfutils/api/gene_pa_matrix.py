@@ -56,7 +56,8 @@ def enlist_entry_size(gene_fasta):
     return(isolate_list)
 
 
-if __name__ == '__main__':
+
+def main():
     gene_list = enlist_fasta(argv[2], argv[3])
     gene_pa = {}
     if argv[1] == 'a':
@@ -68,3 +69,6 @@ if __name__ == '__main__':
     
     siMat = pd.DataFrame.from_dict(gene_pa)
     siMat.to_csv('pa_mat.csv', sep=',')
+
+if __name__ == '__main__':
+    main()

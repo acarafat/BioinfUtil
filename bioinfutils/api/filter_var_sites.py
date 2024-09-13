@@ -84,7 +84,7 @@ def remove_nonsynonymous_sites(codon_alignment, translated_alignment, output):
     pass
 
 
-if __name__ == "__main__":
+def main()
     parser = argparse.ArgumentParser(description="Detect variable sites in an amino acide alignment.")
 
     parser.add_argument("--input_aa_fasta", type=str, help="Path to amino acid alignment file in fasta format")
@@ -122,3 +122,7 @@ if __name__ == "__main__":
 
         for k in fasta_pairs.keys():
             remove_nonsynonymous_sites(fasta_pairs[k][1], fasta_pairs[k][0], k+'.neutral.fna')
+
+
+if __name__ == "__main__":
+    main()

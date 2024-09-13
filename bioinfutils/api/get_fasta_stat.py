@@ -32,5 +32,9 @@ def genome_size(fasta_dir, fasta_suffix):
   pass
 
 
-if __name__ == "__main__":
+def main():
   genome_size(argv[1], argv[2])
+
+  
+if __name__ == "__main__":
+  main()
