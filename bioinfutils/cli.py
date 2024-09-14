@@ -12,13 +12,15 @@ def run_program(program_name):
   """
   try:
     program_module = importlib.import_module(f"api.{program_name}")
-    return program_module
   except ModuleNotFoundError:
     return None
+  
   if program_module:
     program_module.main()
   else:
     print(f"Invalid program: {program_name}")
+
+
 
 def main():
     if len(sys.argv) < 2:
