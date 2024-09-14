@@ -1,6 +1,24 @@
-from program_utils import run_program
+#from program_utils import run_program
 
 import sys
+import importlib
+
+def run_program(program_name):
+  """
+  Attempts to import the program and call its main function.
+
+  Args:
+      program_name: The name of the program (e.g., 'program1').
+  """
+  try:
+    program_module = importlib.import_module(f"api.{program_name}")
+    return program_module
+  except ModuleNotFoundError:
+    return None
+  if program_module:
+    program_module.main()
+  else:
+    print(f"Invalid program: {program_name}")
 
 def main():
     if len(sys.argv) < 2:
