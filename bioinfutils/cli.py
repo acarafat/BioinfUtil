@@ -1,26 +1,4 @@
-#from program_utils import run_program
-
 import sys
-import importlib
-
-def run_program(program_name):
-  """
-  Attempts to import the program and call its main function.
-
-  Args:
-      program_name: The name of the program (e.g., 'program1').
-  """
-  try:
-    program_module = importlib.import_module(f"api.{program_name}")
-  except ModuleNotFoundError:
-    program_module = None
-  
-  if program_module:
-    program_module.main()
-  else:
-    print(f"Invalid program: {program_name}")
-
-
 
 def main():
     if len(sys.argv) < 2:
@@ -30,57 +8,44 @@ def main():
     command = sys.argv[1]
 
     if command == 'change_gbk_origin':
-        #run_program('change_gbk_origin')
-        import api.change_gbk_origin
-        api.change_gbk_origin.main()  # Call the main function 
+        import change_gbk_origin
+        change_gbk_origin.main()  # Call the main function 
     elif command == 'filter_fasta':
-        run_program('filter_fasta')
-        #import api.filter_fasta
-        #api.filter_fasta.main()
+        import filter_fasta
+        filter_fasta.main()
     elif command == 'filter_genbank_contigs':
-        run_program('filter_genbank_contigs')
-        #import api.filter_genbank_contigs
-        #api.filter_genbank_contigs.main()
+        import filter_genbank_contigs
+        filter_genbank_contigs.main()
     elif command == 'filter_var_sites':
-        run_program('filter_var_sites')
-        #import api.filter_var_sites
-        #api.filter_var_sites.main()
+        import filter_var_sites
+        filter_var_sites.main()
     elif command == 'gbk_reverse_complement':
-        run_program('gbk_reverse_complement')
-        #import api.gbk_reverse_complement
-        #api.gbk_reverse_complement.main()
+        import gbk_reverse_complement
+        gbk_reverse_complement.main()
     elif command == 'gbk2fasta':
-        run_program('gbk2fasta')
-        #import api.gbk2fasta
-        #api.gbk2fasta.main()
+        import gbk2fasta
+        gbk2fasta.main()
     elif command == 'gene_pa_matrix':
-        run_program('gene_pa_matrix')
-        #import api.gene_pa_matrix
-        #api.gene_pa_matrix.main()
+        import gene_pa_matrix
+        gene_pa_matrix.main()
     elif command == 'get_fasta_stat':
-        run_program('get_fasta_stat')
-        #import api.get_fasta_stat
-        #api.get_fasta_stat.main()
+        import get_fasta_stat
+        get_fasta_stat.main()
     elif command == 'multi_fasta_concatenator':
-        run_program('multi_fasta_concatenator')
-        #import api.multi_fasta_concatenator
-        #api.multi_fasta_concatenator.main()
+        import multi_fasta_concatenator
+        multi_fasta_concatenator.main()
     elif command == 'remove_from_fasta':
-        run_program('remove_from_fasta')
-        #import api.remove_from_fasta
-        #api.remove_from_fasta.main()
+        import remove_from_fasta
+        remove_from_fasta.main()
     elif command == 'splti_fasta_desc':
-        run_program('splti_fasta_desc')
-        #import api.split_fasta_desc
-        #api.split_fasta_desc.main()
+        import split_fasta_desc
+        split_fasta_desc.main()
     elif command == 'split_fasta_seq':
-        run_program('split_fasta_seq')
-        #import api.split_fasta_seq
-        #api.split_fasta_seq.main()
+        import split_fasta_seq
+        split_fasta_seq.main()
     elif command == 'update_fasta_seqid':
-        run_program('update_fasta_seqid')
-        #import api.update_fasta_seqid
-        #api.update_fasta_seqid.main
+        import update_fasta_seqid
+        update_fasta_seqid.main
     else:
         print(f"Invalid command: {command}")
         sys.exit(1)
