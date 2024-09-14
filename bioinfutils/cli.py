@@ -13,7 +13,7 @@ def run_program(program_name):
   try:
     program_module = importlib.import_module(f"api.{program_name}")
   except ModuleNotFoundError:
-    return None
+    program_module = None
   
   if program_module:
     program_module.main()
