@@ -30,9 +30,9 @@ def main():
     command = sys.argv[1]
 
     if command == 'change_gbk_origin':
-        run_program('change_gbk_origin')
-        #import api.change_gbk_origin
-        #api.change_gbk_origin.main()  # Call the main function 
+        #run_program('change_gbk_origin')
+        import api.change_gbk_origin
+        api.change_gbk_origin.main()  # Call the main function 
     elif command == 'filter_fasta':
         run_program('filter_fasta')
         #import api.filter_fasta
