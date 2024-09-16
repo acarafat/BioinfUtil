@@ -1,3 +1,0 @@
-[console_scripts]
-bioinfutils = bioinfutils.cli:main
-
