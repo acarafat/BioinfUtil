@@ -6,11 +6,11 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'bioinfutil=bioinfutils.cli:main',
+            'bioinfutils=bioinfutils.cli:main',
         ],
     },
     install_requires=[
-        Bio, argparse, pandas, os, sys
-    ],
+        'Bio', 'argparse', 'pandas'
+    ]
     #test_suite='tests'  # Add tests directory for automatic test discovery
 )

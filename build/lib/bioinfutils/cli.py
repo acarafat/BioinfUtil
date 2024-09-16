@@ -37,7 +37,7 @@ def main():
     elif command == 'remove_from_fasta':
         from . import remove_from_fasta
         remove_from_fasta.main()
-    elif command == 'split_fasta_desc':
+    elif command == 'splti_fasta_desc':
         from . import split_fasta_desc
         split_fasta_desc.main()
     elif command == 'split_fasta_seq':
