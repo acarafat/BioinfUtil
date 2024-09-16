@@ -45,7 +45,7 @@ def main():
         split_fasta_seq.main()
     elif command == 'update_fasta_seqid':
         from . import update_fasta_seqid
-        update_fasta_seqid.main
+        update_fasta_seqid.main()
     else:
         print(f"Invalid command: {command}")
         sys.exit(1)
