@@ -1,54 +1,41 @@
 import sys
+import importlib
+
+# Mapping of subcommands to their respective module paths
+commands = {
+    'change_gbk_origin': 'bioinfutils.change_gbk_origin',
+    'filter_fasta': 'bioinfutils.filter_fasta',
+    'filter_genbank_contigs': 'bioinfutils.filter_genbank_contigs',
+    'filter_var_sites': 'bioinfutils.filter_var_sites',
+    'find_gbk': 'bioinfutils.find_gbk',
+    'gbk_reverse_complement': 'gbk_reverse_complement',
+    'gbk2fasta': 'bioinfutils.gbk2fasta',
+    'gene_pa_matrix': 'bioinfutils.gene_pa_matrix',
+    'get_fasta_stat': 'bioinfutils.get_fasta_stat',
+    'multi_fasta_concatenator': 'bioinfutils.multi_fasta_concatenator',
+    'remove_from_fasta': 'bioinfutils.remove_from_fasta',
+    'split_fasta_desc': 'bioinfutils.split_fasta_desc',
+    'split_fasta_seq': 'bioinfutils.split_fasta_seq',
+    'update_fasta_seqid': 'bioinfutils.update_fasta_seqid'
+    # Add more commands here
+}
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: bioinfutil <command> [<args>]")
+        print("Usage: bioinfutils <command> [<args>]")
         sys.exit(1)
 
     command = sys.argv[1]
-
-    if command == 'change_gbk_origin':
-        from . import change_gbk_origin
-        change_gbk_origin.main()  # Call the main function 
-    elif command == 'filter_fasta':
-        from . import filter_fasta
-        filter_fasta.main()
-    elif command == 'filter_genbank_contigs':
-        from . import filter_genbank_contigs
-        filter_genbank_contigs.main()
-    elif command == 'filter_var_sites':
-        from . import filter_var_sites
-        filter_var_sites.main()
-    elif command == 'gbk_reverse_complement':
-        from . import gbk_reverse_complement
-        gbk_reverse_complement.main()
-    elif command == 'gbk2fasta':
-        from . import gbk2fasta
-        gbk2fasta.main()
-    elif command == 'gene_pa_matrix':
-        from . import gene_pa_matrix
-        gene_pa_matrix.main()
-    elif command == 'get_fasta_stat':
-        from . import get_fasta_stat
-        get_fasta_stat.main()
-    elif command == 'multi_fasta_concatenator':
-        from . import multi_fasta_concatenator
-        multi_fasta_concatenator.main()
-    elif command == 'remove_from_fasta':
-        from . import remove_from_fasta
-        remove_from_fasta.main()
-    elif command == 'split_fasta_desc':
-        from . import split_fasta_desc
-        split_fasta_desc.main()
-    elif command == 'split_fasta_seq':
-        from . import split_fasta_seq
-        split_fasta_seq.main()
-    elif command == 'update_fasta_seqid':
-        from . import update_fasta_seqid
-        update_fasta_seqid.main()
+    if command in commands:
+        # Import the appropriate module based on the command
+        module = importlib.import_module(commands[command])
+        
+        # Call the main() function of the module, passing all remaining sys.argv arguments
+        module.main(sys.argv[2:])  # Pass remaining arguments to module's main()
     else:
-        print(f"Invalid command: {command}")
+        print(f"Error: Unrecognized command '{command}'")
+        print("Available commands:", ", ".join(commands.keys()))
         sys.exit(1)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

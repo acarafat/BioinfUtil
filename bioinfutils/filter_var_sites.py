@@ -84,7 +84,7 @@ def remove_nonsynonymous_sites(codon_alignment, translated_alignment, output):
     pass
 
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(description="Detect variable sites in an amino acide alignment.")
 
     parser.add_argument("--input_aa_fasta", type=str, help="Path to amino acid alignment file in fasta format")
@@ -96,7 +96,7 @@ def main():
     parser.add_argument("--input_aa_suffix", type=str, help="Common suffix of AA fasta file input")
     parser.add_argument("--input_na_suffix", type=str, help="Common suffix of NA fasta file input")
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     # Case: only AA and NA files are provided for a single strain
     if args.input_aa_fasta != None:

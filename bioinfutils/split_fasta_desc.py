@@ -40,7 +40,7 @@ def update_fasta_id(fasta_file, split_symbol, position_to_remove):
     return seq_list
 
 
-def main():
+def main(args=None):
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Update FASTA descriptions based on split patterns.")
 
@@ -54,7 +54,7 @@ def main():
     parser.add_argument("--updated_fasta_suffix", "-u", type=str, required=True, help="Suffix for the updated FASTA output files")
 
     # Parse arguments
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     # Get list of fasta files in the directory
     fasta_list = enlist_fasta(args.input_dir, args.fasta_suffix)

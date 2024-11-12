@@ -1,19 +1,4 @@
-'''
-Gene Present-Absent Matrix
-
-Let's say you have a set of fasta files where each file contains specific gene sequence from different isolates. 
-This script can make your life easier to make a gene present-absent matrix. 
-It can also count length of the genes in #nucleotide
-It will make a csv file containing the gene present-absent matrix.
-
-Options: 
-a: just the presence-absence matrix
-b: also count gene length for that genome in the presence-absence matrix
-
-Usage in command line: python gene_pa_matrix.py <option> <~/dir/contianing/fasta> <fasta_suffix>
-'''
-
-from sys import argv
+import argparse
 from Bio import SeqIO
 from os import listdir, getcwd
 import pandas as pd
@@ -57,13 +42,20 @@ def enlist_entry_size(gene_fasta):
 
 
 
-def main():
-    gene_list = enlist_fasta(argv[2], argv[3])
+def main(args=None):
+    parser = argparse.ArgumentParser(description='Convert GenBank files to fasta format (fna, ffn, faa).')
+    parser.add_argument('--input', '-i',  help='A directory path that contains multiple fasta files. Each fasta should contains isolates for a specific genes.')
+    parser.add_argument('--suffix', '-s', help='Suffix of fasta files')
+    parser.add_argument('--option', '-o',  help="Option 'a' to generate presence matrix or 'b' to generate size matrix.")
+    args = parser.parse_args(args)
+
+    gene_list = enlist_fasta(args.input, args.suffix)
+    
     gene_pa = {}
-    if argv[1] == 'a':
+    if args.option == 'a':
         for gene in gene_list:
             gene_pa[gene] = enlist_entry(gene)
-    elif argv[1] == 'b':
+    elif args.option == 'b':
         for gene in gene_list:
             gene_pa[gene] = enlist_entry_size(gene)
     

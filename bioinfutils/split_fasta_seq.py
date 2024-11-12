@@ -19,14 +19,14 @@ def split_fasta_seq(input_file, output_dir, prefix=""):
     SeqIO.write(seq_record, output_file, "fasta")
 
 
-def main():
+def main(args=None):
   # Define arguments
   parser = argparse.ArgumentParser(description="Split FASTA file into individual files")
   parser.add_argument("-i", "--input",  help="Path to the input FASTA file", required=True)
   parser.add_argument("-o", "--output", help="Path to the output directory", required=True)
   parser.add_argument("-p", "--prefix", help="Optional prefix for output filenames", required=False, default="")
 
-  args = parser.parse_args()
+  args = parser.parse_args(args)
 
   # Split FASTA file
   split_fasta_seq(args.input, args.output, args.prefix)

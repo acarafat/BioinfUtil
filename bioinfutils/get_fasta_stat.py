@@ -1,14 +1,6 @@
-'''
-For a set of fasta files in a directory, retrieve number of nucleotide per fasta file.
-This is helpful to get estimate of genome size.
-
-Usage in commandline:
-python get_fasta_stat.py <directory> <fasta_suffix>
-'''
-
 from Bio import SeqIO
 from os import listdir
-from sys import argv
+import argparse
 
 
 def genome_size(fasta_dir, fasta_suffix):
@@ -32,8 +24,13 @@ def genome_size(fasta_dir, fasta_suffix):
   pass
 
 
-def main():
-  genome_size(argv[1], argv[2])
+def main(args=None):
+  parser = argparse.ArgumentParser(description='Get fasta stat')
+  parser.add_argument('--input', '-i',  help='Input fasta directory.')
+  parser.add_argument('--suffix', '-s', help='fasta suffix')
+  args = parser.parse_args(args)
+
+  genome_size(args.input, args.suffix)
 
   
 if __name__ == "__main__":

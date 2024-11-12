@@ -21,12 +21,12 @@ def update_fasta_ids(input_file, output_file):
       all_seq_record.append(record)
     SeqIO.write(all_seq_record, output, "fasta")
 
-def main():
+def main(args=None):
   # Define arguments
   parser = argparse.ArgumentParser(description="Update FASTA sequence IDs")
   parser.add_argument( "-i", "--input", help="Path to the input FASTA file")
   parser.add_argument("-o",  "--output", help="Path to the output FASTA file")
-  args = parser.parse_args()
+  args = parser.parse_args(args)
 
   # Update FASTA file
   update_fasta_ids(args.input, args.output)

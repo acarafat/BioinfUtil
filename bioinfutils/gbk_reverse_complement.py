@@ -56,13 +56,13 @@ def reverse_complement_genbank(input_file):
 
 
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--input', '-i', type=str, required=True)
     parser.add_argument('--output', '-o', type=str, required=True)
     
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     revcomp_records = reverse_complement_genbank(args.input)
  

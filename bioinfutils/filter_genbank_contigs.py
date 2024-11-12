@@ -20,13 +20,13 @@ def filter_genbank(input_file, output_file, contig_ids):
         # Write the filtered records to the output file
         SeqIO.write(filtered_records, outfile, "genbank")
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(description="Filter GenBank file based on contig IDs.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input GenBank file.")
     parser.add_argument("-o", "--output", required=True, help="Path to the output GenBank file.")
     parser.add_argument("-c", "--contigs", nargs='+', required=True, help="List of contig IDs to filter by.")
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     # Call the filter function
     filter_genbank(args.input, args.output, args.contigs)

@@ -25,17 +25,17 @@ def remove_from_fasta(fasta_file, sequences_to_remove, output_file):
   with open(output_file, "w") as handle:
     SeqIO.write(filtered_records, handle, "fasta")
 
-def main():
+def main(args=None):
   # Create argument parser
   parser = argparse.ArgumentParser(description="Remove sequences from a FASTA file.")
 
   # Required arguments
-  parser.add_argument("fasta_file", help="Path to the input FASTA file.")
-  parser.add_argument("sequences_to_remove", help="Path to a file containing list of sequence IDs to remove (one ID per line).")
-  parser.add_argument("output_file", help="Path to the output FASTA file.")
+  parser.add_argument("--fasta", "-f", help="Path to the input FASTA file.")
+  parser.add_argument("--remove_id", "-r", help="Path to a file containing list of sequence IDs to remove (one ID per line).")
+  parser.add_argument("--output", "-o", help="Path to the output FASTA file.")
 
   # Parse arguments
-  args = parser.parse_args()
+  args = parser.parse_args(args)
 
   # Call function with parsed arguments
   remove_from_fasta(args.fasta_file, args.sequences_to_remove, args.output_file)

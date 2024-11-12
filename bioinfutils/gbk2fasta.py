@@ -99,13 +99,13 @@ def process_input(input_path, output_type, output_dir):
 
 
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(description='Convert GenBank files to fasta format (fna, ffn, faa).')
     parser.add_argument('--input', '-i',  help='Input GenBank file or directory containing GenBank files.')
     parser.add_argument('--output_type', '-t', choices=['fna', 'ffn', 'faa'], help='Output type: fna (whole contigs), ffn (CDS nucleotide sequences), faa (translated CDS sequences).')
     parser.add_argument('--output_dir', '-o', help='Directory to save output files.')
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     # Ensure output directory exists
     if not os.path.exists(args.output_dir):

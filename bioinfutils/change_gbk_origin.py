@@ -55,21 +55,20 @@ def change_feature_location(f, origin, record):
 
 	return f
 
-def main():
+def main(args=None):
 	parser = argparse.ArgumentParser(description='Change the origin of a circular	DNA genbank file')
-	parser.add_argument('origin', 
-											metavar='N', 
-											type=int, 
-											help="The 1-offset location of the new origin")
-	parser.add_argument('input', 
-											type = str,
-											help = 'The sequence file')
-	parser.add_argument('output',
-											help = 'File to write to',
-											nargs = '?',
-											default = None)
+	
+	parser.add_argument('--origin', '-n', type=int, help="The 1-offset location of the new origin")
+	parser.add_argument('--input', '-i', type = str, help = 'The sequence file')
+	parser.add_argument('--output', '-o', help = 'File to write to', nargs = '?', default = None)
 
-	args = parser.parse_args()
+	# If no arguments are passed, print the help
+	if args is None or len(args) == 0:
+		parser.print_help()
+		return
+    
+
+	args = parser.parse_args(args)
 
 	record = open_sequence(args.input)
 	origin = args.origin -1
@@ -88,6 +87,7 @@ def main():
 										 for f in record.features]
 
 	SeqIO.write(record, output, 'genbank')
+
 
 
 if __name__=='__main__':

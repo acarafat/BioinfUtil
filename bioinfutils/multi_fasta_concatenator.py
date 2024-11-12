@@ -89,11 +89,11 @@ def write_concatenated_sequences(concatenated_sequences, output_file):
         for strain_name, sequence in concatenated_sequences.items():
             f.write(f'>{strain_name}\n{sequence}\n')
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(description='Concatenate sequences from multiple FASTA files by strain')
-    parser.add_argument('input_dir', help='Input directory containing FASTA files')
-    parser.add_argument('output_file', help='Output FASTA file name')
-    args = parser.parse_args()
+    parser.add_argument('--input', '-i', help='Input directory containing FASTA files')
+    parser.add_argument('--output', '-o', help='Output FASTA file name')
+    args = parser.parse_args(args)
 
     sequences_by_strain_gene = parse_fasta_files(args.input_dir)
     concatenated_sequences = concatenate_sequences(sequences_by_strain_gene)
